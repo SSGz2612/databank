@@ -73,7 +73,25 @@ const AddData: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 <select { ...register("country")} id="country">
                   <option value=""></option>
                   <option value="Ukraine">Ukraine</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Italy">Italy</option>
+                  <option value="Poland">Poland</option>
+                  <option value="Germany">Germany</option>
+                  <option value="France">France</option>
+                  <option value="Russian">Russian</option>
+                  <option value="United kingdom">United kingdom</option>
+                  <option value="Ireland">Ireland</option>
+                  <option value="United States">United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Argentina">Argentina</option>
                   <option value="Paraguay">Paraguay</option>
+                  <option value="Uruguay">Uruguay</option>
+                  <option value="Egipt">Egipt</option>
+                  <option value="South Africa">South Africa</option>
+                  <option value="Turkey">Turkey</option>
+                  <option value="EUA">EUA</option>
+                  <option value="Japan">Japan</option>
+                  <option value="China">China</option>
                 </select>
               </div>
             </>)}
