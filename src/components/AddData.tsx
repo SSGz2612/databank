@@ -21,7 +21,6 @@ const AddData: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   
   const onSubmit = handleSubmit((data) => {
     dispatch(setList(data));
-    console.log(data);
   });
 
   return isOpen ? (<div className="viewModal">
@@ -144,7 +143,9 @@ const AddData: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             { page !== 2 && (<button className="button1" type="button" disabled={ !isValid } onClick={() => { setPage((x) => x + 1)}}
             >Next</button>)}
             
-            { page === 2 && (<button className="button1" type="submit" value="submit">Save</button>)}
+            { page === 2 && (<>
+            <button className="button1" type="submit" value="submit">Save</button>
+            </>)}
           </div>
         </div>
       </form>
