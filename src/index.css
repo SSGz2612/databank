@@ -14,10 +14,14 @@ nav {
 }
 
 button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #83BA63;
-  margin: 20px 0;
+  margin: 20px 0 20px 10px;
+  padding: 0 15px;
   color: white;
-  width: 50px;
+  width: auto;
   height: 25px;
   border: none;
   border-radius: 10px;
@@ -60,8 +64,102 @@ tr td {
 /* modal */
 .modalContent {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
   margin: auto;
   width: 365px;
   height: 321px;
-  border: 1px solid black;
+  box-shadow: rgba( 0, 0, 0, 0.1 ) 0px 4px 12px;
+}
+
+.contentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 15px;
+  width: 315px;
+  height: 271px;
+}
+
+.titleTxt {
+  display: flex;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 5px 0;
+  width: 100%;
+  height: auto;
+}
+
+.labelInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dirCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelInput label {
+  display: flex;
+  font-size: 14px;
+}
+
+.labelInput input {
+  display: flex;
+  width: 220px;
+  height: 21px;
+  margin: 2px 0;
+  padding: 0 5px;
+  border: 1px solid #999999;
+}
+
+.labelInput select {
+  display: flex;
+  width: 232px;
+  height: 25px;
+  margin: 2px 0;
+  padding: 0 5px;
+  border: 1px solid #999999;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 315px;
+  height: 271px;
+}
+
+.labelButton {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.required {
+  display: flex;
+  width: 220px;
+  font-size: 10px;
+  color: red;
+}
+
+.button2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 0 15px;
+  margin: 0 10px;
+  color: #83BA63;
+  width: auto;
+  height: 25px;
+  border: 1px solid #83BA63;
+  border-radius: 10px;
+  cursor: pointer;
 }

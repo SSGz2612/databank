@@ -1,4 +1,5 @@
 export interface userInfo {
+  id: number;
   company: string;
   name: string;
   additional: string;
@@ -12,9 +13,4 @@ export interface userInfo {
   email: string;
   birthday: string;
   homepage: string;
-}
-
-export interface IUserActionModel {
-  type: string;
-  payload: userInfo | any;
 }

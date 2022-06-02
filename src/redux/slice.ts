@@ -12,12 +12,20 @@ export const userSlice = createSlice({
     name: "users",
     initialState,
     reducers: {
-        setList: ( state, action: PayloadAction<any>) => {
-            state.list = action.payload
-            console.log( state.list )
+        setList: (state, action: PayloadAction<any>) => {
+            state.list = [
+                ...state.list, {
+                    ...action.payload,
+                    id: state.list.length
+                }
+            ]
+            // console.log( state.list );
+        },
+        removeList: (state, action: PayloadAction<any>) => {
+            state.list = state.list.filter(({id}) => id !== action.payload );
         }
     }
 })
 
 export default userSlice.reducer;
-export const { setList } = userSlice.actions;
+export const { setList, removeList } = userSlice.actions;

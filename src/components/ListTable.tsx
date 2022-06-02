@@ -1,68 +1,64 @@
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { removeList } from '../redux/slice';
 // css
 import '../index.css';
 
 const ListTable = () => {
+  const dispatch = useAppDispatch();
+  const selector = useAppSelector((state) => state.users.list );
 
-  return (
-    <>
-      <nav>
-        <button>Add</button>
-      </nav>
+  return <>
+    <nav>
+      <button>Add</button>
+    </nav>
 
-      <div className='content'>
-        <table>
-          <tbody>
-            <tr className='nav'>
-              <th></th>
-              <th>Company</th>
-              <th>Name</th>
-              <th>Additional</th>
-              <th>Street</th>
-              <th>Postal Code</th>
-              <th>Country</th>
-              <th>IBAN</th>
-              <th>BIC</th>
-              <th>Bank Name</th>
-              <th>Fax</th>
-              <th>Email</th>
-              <th>Birthday</th>
-              <th>Homepage</th>
-            </tr>
-            {/* { users.map((user: userInfo) => {
-              const {
-                company, name, additional, street,
-                postalCode, country, iban, bic, bankName,
-                fax, email, birthday, homepage
-              } = user;
-              return (
-                <tr key={name}>
-                  <td
-                    onClick={() => dispatch(removeUserAction(name))}
-                    key={`delete-${name}`}
-                  >
-                    <div className='trashIcon'></div>
-                  </td>
-                  <td>{ company }</td>
-                  <td>{ name }</td>
-                  <td>{ additional }</td>
-                  <td>{ street }</td>
-                  <td>{ postalCode }</td>
-                  <td>{ country }</td>
-                  <td>{ iban }</td>
-                  <td>{ bic }</td>
-                  <td>{ bankName }</td>
-                  <td>{ fax }</td>
-                  <td>{ email }</td>
-                  <td>{ birthday }</td>
-                  <td>{ homepage }</td>
-                </tr>
-              );
-            })} */}
-          </tbody>
-        </table>
-      </div>
-    </>
-  );
+    <div className='content'>
+      <table>
+        <tbody>
+          <tr className='nav'>
+            <th></th>
+            <th>Company</th>
+            <th>Name</th>
+            <th>Additional</th>
+            <th>Street</th>
+            <th>Postal Code</th>
+            <th>Country</th>
+            <th>IBAN</th>
+            <th>BIC</th>
+            <th>Bank Name</th>
+            <th>Fax</th>
+            <th>Email</th>
+            <th>Birthday</th>
+            <th>Homepage</th>
+          </tr>
+          { selector.map((user) => {
+            return <>
+              <tr key={ user.id }>
+                <td
+                  onClick={() => dispatch(removeList(user.id))}
+                >
+                  <div className='trashIcon'></div>
+                </td>
+                <td>{ user.company }</td>
+                <td>{ user.name }</td>
+                <td>{ user.additional }</td>
+                <td>{ user.street }</td>
+                <td>{ user.postalCode }</td>
+                <td>{ user.country }</td>
+                <td>{ user.iban }</td>
+                <td>{ user.bic }</td>
+                <td>{ user.bankName }</td>
+                <td>{ user.fax }</td>
+                <td>{ user.email }</td>
+                <td>{ user.birthday }</td>
+                <td>{ user.homepage }</td>
+              </tr>
+              </>
+          })}
+        </tbody>
+      </table>
+    </div>
+  </>
 };
 
 export default ListTable;

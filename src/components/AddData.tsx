@@ -1,5 +1,8 @@
+import { useState } from 'react';
+// modal
+import Modal from "react-modal";
 // redux
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useAppDispatch } from '../redux/hooks';
 import { userInfo } from '../redux/model';
 // react form
 import { useForm } from 'react-hook-form';
@@ -10,45 +13,141 @@ import { setList } from '../redux/slice';
 type UI = userInfo;
 
 const AddData = () => {
-  const dispatch = useAppDispatch();
-  const selector = useAppSelector(() => {});
-  const { register, handleSubmit, formState: { errors }} = useForm<UI>();
-  
+  const [ page, setPage ] = useState(0);
+  const FormTitles = ["Invoice Address", "Bank Data", "Contact"];
 
+  const dispatch = useAppDispatch();
+  const { register, handleSubmit, formState: { errors, isValid }} = useForm<UI>({ mode: "all" });
+  
   const onSubmit = handleSubmit((data) => { dispatch(setList(data))});
 
-  return (
+  return (<>
     <div className='modalContent'>
       <form onSubmit={ onSubmit }>
-        <label htmlFor="company">Company:</label>
-        <input { ...register("company", { required: true, maxLength: 100 })} id="company" />
-        { errors.company && <p>This is required!</p>}
+        <div className="contentForm">
+          <div className="labels">
+          <div className="titleTxt">{ FormTitles[page] }</div>
+            { page === 0 && (<>
+              {/* *** company *** */}
+              <div className="labelInput">
+                <label htmlFor="company">Company</label>
+                <div className="dirCol">
+                  <input { ...register("company", { required: true, maxLength: 100 })} id="company" />
+                  <div className="required">{ errors.company && "This is required!" }</div>
+                </div>
+              </div>
 
-        <label htmlFor="name">Name:</label>
-        <input { ...register("name", { required: true, maxLength: 30 })} id="name" />
+              {/* *** name *** */}
+              <div className="labelInput">
+                <label htmlFor="name">Name</label>
+                <div className="dirCol">
+                  <input { ...register("name", { required: true, maxLength: 30 })} id="name" />
+                  <div className="required">{ errors.name && "This is required!" }</div>
+                </div>
+              </div>
 
-        <label htmlFor="additional">Additional:</label>
-        <input { ...register("additional")} id="additional" />
+              {/* *** additional *** */}
+              <div className="labelInput">
+                <label htmlFor="additional">Additional</label>
+                <input { ...register("additional")} id="additional" />
+              </div>
 
-        <label htmlFor="street">Street:</label>
-        <input { ...register("street")} id="street" />
+              {/* *** street *** */}
+              <div className="labelInput">
+                <label htmlFor="street">Street</label>
+                <input { ...register("street")} id="street" />
+              </div>
+              
+              {/* *** postal code *** */}
+              <div className="labelInput">
+                <label htmlFor="postalCode">Postal Code</label>
+                <input { ...register("postalCode")} id="postalCode" />
+              </div>
 
-        <label htmlFor="postalCode">Postal Code:</label>
-        <input { ...register("postalCode")} id="postalCode" />
+              {/* *** country *** */}
+              <div className="labelInput">
+                <label htmlFor="country">Country</label>
+                <select { ...register("country")} id="country">
+                  <option value=""></option>
+                  <option value="Ukraine">Ukraine</option>
+                  <option value="Paraguay">Paraguay</option>
+                </select>
+              </div>
+            </>)}
 
-        <label htmlFor="country">Country</label>
-        <select { ...register("country")} id="country">
-          <option value="">Select...</option>
-          <option value="Ukraine">Ukraine</option>
-          <option value="Paraguay">Paraguay</option>
-        </select>
-        
-        <input type="submit" value="Submit" />
+            { page === 1 && (<>
+              {/* *** iban *** */}
+              <div className="labelInput">
+                <label htmlFor="iban">IBAN</label>
+                <div className="dirCol">
+                  <input { ...register("iban", { required: true, maxLength: 30 })} id="iban" />
+                  <div className="required">{ errors.iban && "This is required!" }</div>
+                </div>
+              </div>
+
+              {/* *** bic *** */}
+              <div className="labelInput">
+                <label htmlFor="bic">BIC</label>
+                <div className="dirCol">
+                  <input { ...register("bic", { required: true, maxLength: 30 })} id="bic" />
+                  <div className="required">{ errors.bic && "This is required!" }</div>
+                </div>
+              </div>
+
+              {/* *** bankname *** */}
+              <div className="labelInput">
+                <label htmlFor="bankName">Bank Name</label>
+                <div className="dirCol">
+                  <input { ...register("bankName", { required: true, maxLength: 30 })} id="bankName" />
+                  <div className="required">{ errors.bankName && "This is required!" }</div>
+                </div>
+              </div>
+            </>)}
+
+            { page === 2 && (<>
+              {/* *** fax *** */}
+              <div className="labelInput">
+                <label htmlFor="fax">Fax</label>
+                <input { ...register("fax")} id="fax" />
+              </div>
+
+              {/* *** email *** */}
+              <div className="labelInput">
+                <label htmlFor="email">E-mail</label>
+                <input type="email" { ...register("email")} id="email" />
+              </div>
+
+              {/* *** birthday *** */}
+              <div className="labelInput">
+                <label htmlFor="birthday">Birthday</label>
+                <input type="date" { ...register("birthday")} id="birthday" />
+              </div>
+
+              {/* *** homepage *** */}
+              <div className="labelInput">
+                <label htmlFor="homepage">Homepage</label>
+                <input { ...register("homepage")} id="homepage" />
+              </div>
+            </>)}
+          </div>
+
+          <div className="labelButton">
+            <button className="button2">Cancel</button>
+
+            { page !== 0 && (<button className="button2" disabled={ page === 0 } onClick={() => { setPage((x) => x - 1)}}
+            >Previous</button>)}
+            
+            { page !== 2 && (<button type="button" disabled={ !isValid } onClick={() => { setPage((x) => x + 1)}}
+            >Next</button>)}
+            
+            { page === 2 && (<button type="submit" value="Submit">Save</button>)}
+          </div>
+        </div>
       </form>
 
       <div>{}</div>
     </div>
-  );
+  </>);
 };
 
 export default AddData;
