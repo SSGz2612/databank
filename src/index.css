@@ -8,6 +8,8 @@ body {
 }
 
 nav {
+  display: flex;
+  align-items: center;
   width: 90%;
   margin: auto;
   height: 65px;
@@ -18,7 +20,6 @@ button {
   justify-content: center;
   align-items: center;
   background-color: #83BA63;
-  margin: 20px 0 20px 10px;
   padding: 0 15px;
   color: white;
   width: auto;
@@ -29,9 +30,15 @@ button {
 }
 
 .content {
+  display: flex;
+  position: relative;
   margin: auto;
   min-width: 1000px;
+  max-height: 900px;
   width: 90%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1;
 }
 
 table {
@@ -61,9 +68,11 @@ tr td {
   height: 20px;
 }
 
-/* modal */
+/* form */
 .modalContent {
   display: flex;
+  position: absolute;
+  background-color: white;
   justify-content: center;
   align-items: flex-start;
   margin: auto;
@@ -89,6 +98,17 @@ tr td {
   margin: 5px 0;
   width: 100%;
   height: auto;
+}
+
+.closeX {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 25px;
+  color: #999999;
+  width: 100%;
+  height: 15px;
+  cursor: pointer;
 }
 
 .labelInput {
@@ -149,12 +169,31 @@ tr td {
   color: red;
 }
 
+.button1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #83BA63;
+  margin: 0 0 0 10px;
+  padding: 0 15px;
+  color: white;
+  width: auto;
+  height: 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.textCancel {
+  font-size: 14px;
+  padding: 0 10px;
+}
+
 .button2 {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
-  padding: 0 15px;
   margin: 0 10px;
   color: #83BA63;
   width: auto;
@@ -162,4 +201,16 @@ tr td {
   border: 1px solid #83BA63;
   border-radius: 10px;
   cursor: pointer;
+}
+
+/* modal */
+.viewModal {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba( 0, 0, 0, 0.7 );
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
 }

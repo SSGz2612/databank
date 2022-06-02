@@ -1,30 +1,34 @@
 import { useState } from 'react';
-// modal
-import Modal from "react-modal";
 // redux
 import { useAppDispatch } from '../redux/hooks';
 import { userInfo } from '../redux/model';
 // react form
 import { useForm } from 'react-hook-form';
+// modal
+import { ModalProps } from '../redux/model';
 // css
 import '../index.css';
 import { setList } from '../redux/slice';
 
 type UI = userInfo;
 
-const AddData = () => {
+const AddData: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [ page, setPage ] = useState(0);
   const FormTitles = ["Invoice Address", "Bank Data", "Contact"];
 
   const dispatch = useAppDispatch();
   const { register, handleSubmit, formState: { errors, isValid }} = useForm<UI>({ mode: "all" });
   
-  const onSubmit = handleSubmit((data) => { dispatch(setList(data))});
+  const onSubmit = handleSubmit((data) => {
+    dispatch(setList(data));
+    console.log(data);
+  });
 
-  return (<>
+  return isOpen ? (<div className="viewModal">
     <div className='modalContent'>
       <form onSubmit={ onSubmit }>
         <div className="contentForm">
+          <div className="closeX" onClick={ onClose }>x</div>
           <div className="labels">
           <div className="titleTxt">{ FormTitles[page] }</div>
             { page === 0 && (<>
@@ -132,22 +136,20 @@ const AddData = () => {
           </div>
 
           <div className="labelButton">
-            <button className="button2">Cancel</button>
+            <button className="button2" onClick={ onClose }>Cancel</button>
 
-            { page !== 0 && (<button className="button2" disabled={ page === 0 } onClick={() => { setPage((x) => x - 1)}}
-            >Previous</button>)}
+            { page !== 0 && (<div className="button2 textCancel" onClick={() => { setPage((x) => x - 1)}}
+            >Previous</div>)}
             
-            { page !== 2 && (<button type="button" disabled={ !isValid } onClick={() => { setPage((x) => x + 1)}}
+            { page !== 2 && (<button className="button1" type="button" disabled={ !isValid } onClick={() => { setPage((x) => x + 1)}}
             >Next</button>)}
             
-            { page === 2 && (<button type="submit" value="Submit">Save</button>)}
+            { page === 2 && (<button className="button1" type="submit" value="submit">Save</button>)}
           </div>
         </div>
       </form>
-
-      <div>{}</div>
     </div>
-  </>);
+  </div>) : null
 };
 
 export default AddData;
