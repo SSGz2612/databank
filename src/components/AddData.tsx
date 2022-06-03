@@ -162,7 +162,7 @@ const AddData: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             >Next</button>)}
             
             { page === 2 && (<>
-            <button className="button1" type="submit" value="submit">Save</button>
+            <button className="button1" type="submit" value="submit" onClick={() => { onSubmit(); onClose() }}>Save</button>
             </>)}
           </div>
         </div>
