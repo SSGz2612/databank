@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import AddData from './AddData';
-// redux
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { removeList } from '../redux/slice';
 // css
 import '../index.css';
 import ListData from './ListData';
@@ -10,9 +7,6 @@ import ListData from './ListData';
 const ListTable = () => {
   const [ isModalOpen, setIsModalOpen ] = useState(false);
   const toogleModal = () => setIsModalOpen(!isModalOpen);
-
-  const dispatch = useAppDispatch();
-  const selector = useAppSelector((state) => state.users.list );
 
   return <>
     <AddData isOpen={ isModalOpen } onClose={ toogleModal }>

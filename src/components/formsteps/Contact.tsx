@@ -1,15 +1,10 @@
-import { userInfo } from '../redux/model';
-// react form
-import { useForm } from 'react-hook-form';
-// css
-import '../index.css';
-
-type UI = userInfo;
+import { useFormContext } from 'react-hook-form';
+import '../../index.css';
 
 const Contact: React.FC = () => {
-    const { register } = useForm<UI>({ mode: "all" });
+    const { register } = useFormContext();
 
-    return (<>
+    return(<>
         {/* *** fax *** */}
         <div className="labelInput">
         <label htmlFor="fax">Fax</label>

@@ -1,20 +1,15 @@
-import { useAppDispatch } from '../redux/hooks';
-import { userInfo } from '../redux/model';
-// react form
-import { useForm } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
+import Contact from './Contact';
+import '../../index.css';
 
-// modal
-import { ModalProps } from '../redux/model';
-// css
-import '../index.css';
-import { setList } from '../redux/slice';
-
-type UI = userInfo;
-
-const DataBank: React.FC = () => {
-    const { register, formState: { errors }} = useForm<UI>({ mode: "all" });
-
-    return (<>
+const DataBank = () => {
+    const { register,
+        handleSubmit,
+        trigger,
+        formState: { errors, isValid }
+    } = useFormContext();
+    
+    return(<>
         {/* *** iban *** */}
         <div className="labelInput">
         <label htmlFor="iban">IBAN</label>
