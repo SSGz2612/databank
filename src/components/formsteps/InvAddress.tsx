@@ -1,10 +1,9 @@
 import '../../index.css';
 import { useFormContext } from 'react-hook-form';
-import DataBank from './DataBank';
 
 const InvAddress = () => {
-    const { register,
-        handleSubmit,
+    const {
+        register,
         trigger,
         formState: { errors, isValid }
     } = useFormContext();

@@ -60,49 +60,49 @@ const AddData: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           <div className="closeX" onClick={ onClose }>x</div>
           <div className="labels">
           <div className="titleTxt">{ FormTitles[page] }</div>
-            { page === 0 && (
+            { page === 0 && (<>
               <InvAddress />
-            )}
+              <div className="labelButton">
+                <button className="button2" onClick={ onClose }>Cancel</button>
+                <button className="button1" type="button" disabled={ !isValid } onClick={ async() => {
+                  const out = await trigger(['name', 'company']);
+                  console.log( out );
+                  if( out === true ) {
+                    setPage((x) => x + 1)}}
+                  }                
+                >Next</button>
+              
+                <button className="button1" type="submit" value="submit" onClick={() => onSubmit }>Save</button>
+              </div>
+            </>)}
 
-            { page === 1 && (
+            { page === 1 && (<>
               <DataBank />
-            )}
+              <div className="labelButton">
+                <button className="button2" onClick={ onClose }>Cancel</button>
+                
+                <div className="button2 textCancel" onClick={() => { setPage((x) => x - 1)}}>Previous</div>
+              
+                <button className="button1" type="button" disabled={ !isValid } onClick={ async() => {
+                  const out = await trigger(['iban', 'bic', 'bankName']);
+                  console.log( out );
+                  if( out === true ) {
+                    setPage((x) => x + 1)}}
+                  }                
+                >Next</button>
+              
+                <button className="button1" type="submit" value="submit" onClick={() => onSubmit }>Save</button>
+              </div>
+              </>)}
 
-            { page === 2 && (
-              <Contact />
-            )}
-          </div>
-
-          <div className="labelButton">
-            <button className="button2" onClick={ onClose }>Cancel</button>
-
-            { page !== 0 && (
-            <div
-              className="button2 textCancel"
-              onClick={() => { setPage((x) => x - 1)}}
-            >Previous</div>)}
-            
-            { page !== 2 && (
-            <button
-              className="button1"
-              type="button"
-              disabled={ !isValid }
-              onClick={ async() => {
-                const out = await trigger(['name', 'company']);
-                console.log( out );
-                if( out === true ) {
-                  setPage((x) => x + 1)}}
-                }                
-            >Next</button>
-            )}
-            
             { page === 2 && (<>
-            <button
-              className="button1"
-              type="submit"
-              value="submit"
-              onClick={() => onSubmit }
-            >Save</button>
+              <Contact />
+              <div className="labelButton">
+                <button className="button2" onClick={ onClose }>Cancel</button>
+                <div className="button2 textCancel" onClick={() => { setPage((x) => x - 1)}}>Previous</div>
+              
+                <button className="button1" type="submit" value="submit" onClick={() => onSubmit }>Save</button>
+              </div>
             </>)}
           </div>
         </div>
