@@ -8,7 +8,7 @@ import '../index.css';
 
 const ListTable = () => {
   const [ isModalOpen, setIsModalOpen ] = useState(false);
-  const toogleModal = () =>setIsModalOpen(!isModalOpen);
+  const toogleModal = () => setIsModalOpen(!isModalOpen);
 
   const dispatch = useAppDispatch();
   const selector = useAppSelector((state) => state.users.list );

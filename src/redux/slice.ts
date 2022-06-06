@@ -12,7 +12,7 @@ export const userSlice = createSlice({
     name: "users",
     initialState,
     reducers: {
-        setList: (state, action: PayloadAction<any>) => {
+        setList: (state, action: PayloadAction<userInfo>) => {
             state.list = [
                 ...state.list, {
                     ...action.payload,
