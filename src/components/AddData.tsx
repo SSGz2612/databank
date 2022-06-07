@@ -69,7 +69,7 @@ const AddData: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                   console.log( out );
                   if( out === true ) {
                     setPage((x) => x + 1)}}
-                  }                
+                  }
                 >Next</button>
               
                 <button className="button1" type="submit" value="submit" onClick={() => onSubmit }>Save</button>
@@ -85,10 +85,11 @@ const AddData: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               
                 <button className="button1" type="button" disabled={ !isValid } onClick={ async() => {
                   const out = await trigger(['iban', 'bic', 'bankName']);
-                  console.log( out );
-                  if( out === true ) {
-                    setPage((x) => x + 1)}}
-                  }                
+                    console.log( out );
+                    if( out === true ) {
+                      setPage((x) => x + 1)
+                    }}
+                  }
                 >Next</button>
               
                 <button className="button1" type="submit" value="submit" onClick={() => onSubmit }>Save</button>
